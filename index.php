@@ -1,14 +1,34 @@
+<?php
+	//$name = array_shift((explode('.', $_SERVER['HTTP_HOST'])));
+	$url = $_SERVER['HTTP_HOST'];
+	//$parseURL = parse_url($url);
+	$host = explode('.', $url);
+	$subdomain = current($host);
+	//$name = $host[0];
+	//$name = str_replace('.hbd.makerkampus.com','',$_SERVER['HTTP_HOST']);
+
+	include "connect.php";
+	$link = Connection();
+?>
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width" />
-    <title>汤爸爸生日快乐~！</title>
-    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Happy Birthday Card</title>
+    <meta name="description" content="Selamat ulang tahun <?php if($subdomain == 'hbd'){
+                        echo '{nama-dia}';
+} else{
+        print($subdomain);
+}
+
+?>">
     <meta name="keywords" content="">
+    <meta name="twitter:image" content="http://hbd.makerkampus.com/gift.png" />
     <link rel="stylesheet" type="text/css" href="static/css/conf/app.css?v=20170719">
+   <script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>
 </head>
 
 <body>
@@ -186,7 +206,15 @@
                 </svg>
                 <div class="text">
                     <h1>Happy Birthday!</h1>
-                    <h2>{nama-kamu}</h2>
+                    <h2><?php 
+		
+			if($subdomain == "hbd"){
+			echo "{nama-dia}";			
+} else{
+	print($subdomain);
+}
+?>
+		</h2>
                     <h3>Scroll Down</h3>
                 </div>
                 <div class="icon-down-wrap">
@@ -197,7 +225,12 @@
                 <div data-role="page-wrap" class="page-wrap page2-wrap">
                     <div class="icon-ear"></div>
                     <div class="txt-box">
-                        <h3 style="color: white;">“Mentari baru hari ini, sebagai awal hari bertambahnya usiamu….Teriring do’a dariku semoga engkau selalu dirahmati dan diberkahi di setiap langkah-langkahmu.."</h3>
+                       <h3 style="color:white;">"
+			  <?php $query = mysqli_query($link,"SELECT wish FROM ucapan ORDER BY RAND() LIMIT 1");
+			   $r = mysqli_fetch_assoc($query);
+		           print $r['wish'];
+			  ?>"
+			</h3>
                     </div>
                 </div>
                 <div class="icon-down-wrap">
@@ -210,27 +243,25 @@
                     <div class="icon-happy"></div>
                 </div>
                 <div align="center" style="padding-top:30px">
-                  <h2 style="color: white;">Buat ucapan ke orang lain !</h2>
+                  <h2 style="color: white;">Beri ucapan ke orang lain !</h2>
                 </div>
-                <div align="center" style="padding-top:10px">
-                  <h3 style="color: white;">metultah.makerkampus.com/{nama-dia}</h3>
-                  <h3>
-            <a href="" class="typewrite" data-period="2000" data-type='[ "Hi, Im Si.", "I am Creative.", "I Love Design.", "I Love to Develop." ]'>
-              <span class="wrap"></span>
-            </a>
-          </h3>
+                <div align="center" style="padding-top:20px">
+                  <h3 style="color: white;">{nama-dia}.hbd.makerkampus.com</h3>
+                </div>  
+            	<div align="center" style="margin-top:220px">
+		  <h5 style="color: white;">Created with <i class="fas fa-heart"></i> by @bamsarts</h5>
                 </div>
                 <div class="icon-down-wrap">
+		
                     <div class="content">
-                        <div class="icon-love"></div>
-                        <p>Created with love by bamsarts</p>
+                        
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <audio autoplay="autoplay" loop="loop" style="display:none">
-        <source src="song.mp" type="audio/mpeg">
+        <source src="song.mp3" type="audio/mpeg">
     </audio>
     <!-- plugin -->
     <script type="text/javascript" src="static/js/vendor/jquery-1.11.1.min.js"></script>
