@@ -30,8 +30,9 @@ $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname) or die ('Error connec
 
 ?>">
     <meta name="keywords" content="">
-    <meta name="twitter:image" content="http://hbd.makerkampus.com/gift.png" />
+    <meta name="twitter:image" content="http://selamat.ulangtahun.me/gift.png" />
     <link rel="stylesheet" type="text/css" href="static/css/conf/app.css?v=20170719">
+    <link rel="stylesheet" type="text/css" href="./bower_components/font-awesome-animation/dist/font-awesome-animation.min.css">
    <script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>
 </head>
 
@@ -219,7 +220,8 @@ $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname) or die ('Error connec
 }
 ?>
 		</h2>
-                    <h3>Scroll Down</h3>
+      <br><br>
+                    <i class="fa fa-arrow-down faa-bounce animated"></i>
                 </div>
                 <div class="icon-down-wrap">
                     <div class="icon-down"></div>
@@ -236,6 +238,8 @@ $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname) or die ('Error connec
 			  ?>"
 			</h3>
                     </div>
+                    <br><br>
+                    <i style="color: white;" class="fa fa-arrow-down faa-bounce animated"></i>
                 </div>
                 <div class="icon-down-wrap">
                     <div class="icon-down"></div>
