@@ -7,8 +7,12 @@
 	//$name = $host[0];
 	//$name = str_replace('.hbd.makerkampus.com','',$_SERVER['HTTP_HOST']);
 
-	include "connect.php";
-	$link = Connection();
+$dbhost = 'localhost'; 
+$dbuser = 'root';
+$dbpass = ''; 
+$dbname = 'ucapan'; 
+
+$conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname) or die ('Error connecting to mysql');
 ?>
 <!DOCTYPE html>
 <html>
@@ -18,8 +22,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Happy Birthday Card</title>
-    <meta name="description" content="Selamat ulang tahun <?php if($subdomain == 'hbd'){
-                        echo '{nama-dia}';
+    <meta name="description" content="Happy Birthday <?php if($subdomain == 'hbd'){
+                        echo '{their-name}';
 } else{
         print($subdomain);
 }
@@ -226,7 +230,7 @@
                     <div class="icon-ear"></div>
                     <div class="txt-box">
                        <h3 style="color:white;">"
-			  <?php $query = mysqli_query($link,"SELECT wish FROM ucapan ORDER BY RAND() LIMIT 1");
+			  <?php $query = mysqli_query($conn, "SELECT wish FROM ucapan ORDER BY RAND() LIMIT 1");
 			   $r = mysqli_fetch_assoc($query);
 		           print $r['wish'];
 			  ?>"
@@ -243,13 +247,13 @@
                     <div class="icon-happy"></div>
                 </div>
                 <div align="center" style="padding-top:30px">
-                  <h2 style="color: white;">Beri ucapan ke orang lain !</h2>
+                  <h2 style="color: white;">give birthday greetings to others :)</h2>
                 </div>
                 <div align="center" style="padding-top:20px">
-                  <h3 style="color: white;">{nama-dia}.hbd.makerkampus.com</h3>
+                  <h3 style="color: white;">http://{their-name}.selamat.ulangtahun.me</h3>
                 </div>  
             	<div align="center" style="margin-top:220px">
-		  <h5 style="color: white;">Created with <i class="fas fa-heart"></i> by @bamsarts</h5>
+		  <h5 style="color: white;">Created with <i class="fa fa-heart"></i> by @bamsarts</h5>
                 </div>
                 <div class="icon-down-wrap">
 		
